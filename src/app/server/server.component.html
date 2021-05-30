@@ -1,8 +1,16 @@
-<div class="card">
+<div
+  class="card w-100"
+  [ngStyle]="{ backgroundColor: getColor() }"
+  [ngClass]="{
+    online: serverStatus === 'online',
+    offline: serverStatus === 'offline'
+  }"
+>
   <div class="card-header">
     <div class="card-title">
-      Server ({{ serverId }}) -
-      <strong>{{ serverStatus === "online" ? "🟢" : "🔴" }}</strong>
+      <strong>{{ serverStatus === "online" ? "🟢" : "🔴" }}</strong> Server ({{
+        serverId
+      }})
     </div>
   </div>
 </div>

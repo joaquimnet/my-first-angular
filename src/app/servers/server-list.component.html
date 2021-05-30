@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Servers</div>
+  </div>
+  <div class="card-body container-fluid">
+    <div class="row">
+      <div class="col">
+        <label for="server-name">Server Name</label>
+        <!--        <input-->
+        <!--          type="text"-->
+        <!--          class="form-control"-->
+        <!--          (input)="onUpdateServerName($event)"-->
+        <!--          [disabled]="!allowNewServer"-->
+        <!--        />-->
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="serverName"
+          [disabled]="!allowNewServer"
+          id="server-name"
+        />
+        <div class="btn-group-sm">
+          <button
+            class="btn btn-primary"
+            [disabled]="!allowNewServer || serverName.trim().length < 1"
+            (click)="onCreateServer(serverName)"
+          >
+            Add Server
+          </button>
+          <button class="btn btn-danger">Delete All Servers</button>
+        </div>
+        <p>{{ serverName }}</p>
+      </div>
+      <div class="col">
+        <h2>Statistics</h2>
+        <ul>
+          <li>Server count: {{servers.length}}</li>
+          <li>Total runtime: 12:22:00</li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="showFeedback" class="row">
+      <div class="col">
+        <div class="alert alert-success">
+          The server was created! <strong>{{ serverName }}</strong>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6" *ngFor="let server of servers">
+        <app-server></app-server>
+      </div>
+    </div>
+  </div>
+</div>
